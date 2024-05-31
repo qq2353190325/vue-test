@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    
     <div>
       <input type="file" ref="fileInput" @change="handleFileChange" accept=".xls,.xlsx" />
       <button @click="processExcel">处理Excel文件</button>
@@ -94,10 +95,12 @@ const colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink'];
 const startLottery = () => {
   state.lotteryCount = 0
   const randomUser = setInterval(() => {
+    //  随机抽取一个学生
     const activeIndex = Math.floor(Math.random() * list.value.length)
     const randomColor = colors[Math.floor(Math.random() * colors.length)];// 随机生成颜色
     list.value[activeIndex].bgcolor = randomColor
     list.value.forEach((item, index) => {
+      console.log(item.name)
       if (activeIndex != index) {
         item.bgcolor = "white"
       }
@@ -107,7 +110,7 @@ const startLottery = () => {
     if (state.lotteryCount >= 10) {
       clearInterval(randomUser)
     }
-  }, 150) // 每秒运行一次抽奖
+  }, 200) // 每0.15秒运行一次抽奖
 }
 </script>
 
